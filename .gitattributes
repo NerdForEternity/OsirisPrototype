@@ -1,0 +1,169 @@
+# ─────────────────────────────────────────────────────────────
+# LFS Macro
+# Apply LFS filter, pointer diff/merge, keep as binary, and mark lockable
+[attr]lfs filter=lfs diff=lfs merge=lfs -text lockable
+# ─────────────────────────────────────────────────────────────
+
+# Unreal binary assets
+*.uasset lfs
+*.umap   lfs
+
+# ── MODELS & ANIMATION / GEOMETRY CACHES ─────────────────────
+*.fbx    lfs
+*.obj    lfs
+*.blend  lfs
+*.dae    lfs
+*.abc    lfs   # Alembic (grooms, caches, sims)
+*.usd    lfs
+*.usda   lfs
+*.usdc   lfs
+*.usdz   lfs
+*.gltf   lfs
+*.glb    lfs
+*.ply    lfs
+*.stl    lfs
+*.mdd    lfs   # Point-cache
+*.pc2    lfs
+
+# ── TEXTURES, PHOTOS & HDRI ──────────────────────────────────
+*.png    lfs
+*.tga    lfs
+*.tif    lfs
+*.tiff   lfs
+*.exr    lfs
+*.hdr    lfs
+*.dds    lfs
+*.bmp    lfs
+*.jpg    lfs
+*.jpeg   lfs
+*.psd    lfs
+*.ai     lfs
+*.dng    lfs   # RAW photo
+*.orf    lfs   # RAW photo (Olympus)
+*.cr2    lfs
+*.nef    lfs
+*.arw    lfs
+*.orf    lfs
+*.ktx    lfs
+*.ktx2   lfs
+*.basis  lfs
+
+# ── AUDIO ────────────────────────────────────────────────────
+*.wav    lfs
+*.flac   lfs
+*.ogg    lfs
+*.mp3    lfs
+*.aiff   lfs
+*.aif    lfs
+
+# ── VIDEO / REFERENCE FOOTAGE ────────────────────────────────
+*.mp4    lfs
+*.mov    lfs
+*.m4v    lfs
+*.avi    lfs
+*.mkv    lfs
+*.webm   lfs
+*.wmv    lfs
+
+# ── MATERIAL / LOOKDEV AUTHORING ─────────────────────────────
+*.sbs    lfs   # Substance Designer sources
+*.sbsar  lfs   # Substance archives
+*.cube   lfs   # LUTs
+*.3dl    lfs
+*.csp    lfs
+*.icc    lfs
+*.icm    lfs
+
+# ── PHOTOGRAMMETRY & SCANS (if applicable) ───────────────────
+*.e57    lfs
+*.las    lfs
+*.laz    lfs
+*.rcproj lfs   # RealityCapture project
+
+# ── FONTS ────────────────────────────────────────────────────
+*.ttf    lfs
+*.otf    lfs
+*.fnt    lfs
+
+# ── (OPTIONAL) BIG BINARY DOCS / DESIGN ASSETS ───────────────
+# Please uncomment & save these lines BEFORE committing these
+# *.eps   lfs
+# *.pdf   lfs
+# *.pptx  lfs
+# *.docx  lfs
+
+# Default for unknown text
+* text=auto eol=lf
+
+# Code / build scripts
+*.h            text eol=lf
+*.hpp          text eol=lf
+*.c            text eol=lf
+*.cpp          text eol=lf
+*.cc           text eol=lf
+*.cs           text eol=lf
+*.Build.cs     text eol=lf
+*.Target.cs    text eol=lf
+*.uprojectdirs text eol=lf
+
+# ─────────────────────────────────────────────────────────────
+# TEXT MERGE BEHAVIOR / EOL / ENCODING
+# ─────────────────────────────────────────────────────────────
+
+# Unreal INI files often use additive lines (+Setting=...), union merge helps
+*.ini           text eol=lf merge=union
+*.config        text eol=lf merge=union
+Config/*.ini    text eol=lf merge=union
+
+# Project & plugin descriptors (JSON-like)
+*.uproject      text eol=lf working-tree-encoding=UTF-8
+*.uplugin       text eol=lf working-tree-encoding=UTF-8
+
+# Common text formats
+*.txt           text eol=lf
+*.csv           text eol=lf
+*.json          text eol=lf
+*.xml           text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+.editorconfig   text eol=lf
+.gitattributes  text eol=lf
+.gitignore      text eol=lf
+
+# Scripts
+*.sh            text eol=lf
+*.ps1           text eol=lf
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+# Windows/MSBuild files (expect CRLF on Windows)
+*.sln           text eol=crlf
+*.vcxproj       text eol=crlf
+*.props         text eol=crlf
+*.targets       text eol=crlf
+
+# ─────────────────────────────────────────────────────────────
+# GITHUB LINGUIST / SHADERS
+# ─────────────────────────────────────────────────────────────
+# Treat Unreal shader files as HLSL for syntax highlighting
+*.usf         text eol=lf linguist-language=HLSL
+*.ush         text eol=lf linguist-language=HLSL
+*.hlsl        text eol=lf
+*.usdt        text eol=lf
+
+# ─────────────────────────────────────────────────────────────
+# OPTIONAL: EXPORT HYGIENE (archives made with `git archive`)
+# ─────────────────────────────────────────────────────────────
+/.gitignore      export-ignore
+/.gitattributes  export-ignore
+/.github/**      export-ignore
+/Docs/**         export-ignore
+
+# ─────────────────────────────────────────────────────────────
+# IN THE EVENT WE INTENTIONALLY COMMIT PAKS/BUILDS
+# (Most teams .gitignore these; keep only if we end up storing them)
+# ─────────────────────────────────────────────────────────────
+*.pak  lfs
+*.ucas lfs
+*.utoc lfs
+*.sig  lfs
